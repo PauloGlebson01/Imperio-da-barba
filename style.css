@@ -1,290 +1,259 @@
-/* ================= RESET ================= */
+/* =========================
+   RESET & BASE
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-/* ================= VARIÁVEIS GERAIS ================= */
-:root {
-  --gold: #d4af37;
-  --gold-hover: #c49b2f;
-  --whatsapp: #25d366;
-}
-
-/* ================= TEMA DARK ================= */
-body.dark {
-  --bg: #0f0f0f;
-  --card-bg: #161616;
-  --text-main: #f1f1f1;
-  --text-muted: #b5b5b5;
-  --border: #2a2a2a;
-
-  --logo-glow-main: rgba(212, 175, 55, 0.7);
-  --logo-glow-soft: rgba(212, 175, 55, 0.35);
-
-  background: linear-gradient(135deg, #000, #111);
-}
-
-/* ================= TEMA LIGHT ================= */
-body.light {
-  --bg: #f4f4f4;
-  --card-bg: #ffffff;
-  --text-main: #111;
-  --text-muted: #555;
-  --border: #ddd;
-
-  --logo-glow-main: rgba(0, 0, 0, 0.25);
-  --logo-glow-soft: rgba(0, 0, 0, 0.12);
-
-  background: linear-gradient(135deg, #eaeaea, #ffffff);
-}
-
-/* ================= BODY ================= */
+/* =========================
+   BODY PADRÃO
+========================= */
 body {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
-  transition: background 0.4s ease;
+  justify-content: center;
+  background: #000000; /* fundo dark */
+  color: #FFFFFF; /* texto padrão */
+  transition: all 0.35s ease;
 }
 
-/* ================= BOTÃO TEMA ================= */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--gold);
-  background: transparent;
-  color: var(--gold);
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.theme-toggle:hover {
-  background: var(--gold);
-  color: #000;
-}
-
-/* ================= CARD ================= */
+/* =========================
+   CARD
+========================= */
 .card {
+  position: relative;
   width: 100%;
   max-width: 420px;
-  background: var(--card-bg);
-  border-radius: 20px;
-  padding: 28px 22px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 22px;
+  padding: 30px 25px;
   text-align: center;
-  border: 1px solid var(--border);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
-  animation: fadeIn 0.8s ease-in-out;
-  transition: background 0.4s ease, border 0.4s ease;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  overflow: hidden;
 }
 
-/* ================= LOGO ================= */
-.logo img {
-  width: 120px;
-  height: 120px;
-  margin-bottom: 16px;
+/* =========================
+   BOTÕES DARK / LIGHT
+========================= */
+.theme-toggle {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--gold);
-
-  box-shadow:
-    0 0 14px var(--logo-glow-main),
-    0 0 34px var(--logo-glow-soft);
-
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.logo img:hover {
-  transform: scale(1.06);
-  box-shadow:
-    0 0 22px var(--logo-glow-main),
-    0 0 50px var(--logo-glow-soft);
-}
-
-/* ================= TÍTULO ================= */
-h1 {
-  color: var(--gold);
-  font-size: 1.7rem;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-/* ================= SUBTÍTULO ================= */
-.subtitle {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-}
-
-/* ================= SERVIÇOS ================= */
-.services {
-  margin-bottom: 22px;
-}
-
-.services p {
-  color: var(--text-main);
-  font-size: 0.95rem;
-  margin: 10px 0;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-
-/* ===== Destaque especial no TEMA CLARO ===== */
-body.light h1 {
-  color: #111;
-  font-weight: 700;
-}
-
-body.light .subtitle {
-  color: #333;
-  font-weight: 500;
-}
-
-body.light .services p {
-  font-weight: 500;
-  background: linear-gradient(
-    90deg,
-    rgba(212, 175, 55, 0.14),
-    rgba(212, 175, 55, 0.03)
-  );
-  padding: 10px 14px;
-  border-radius: 10px;
-}
-
-body.light .services p:hover {
-  background: rgba(212, 175, 55, 0.2);
-}
-
-/* ================= BOTÕES ================= */
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-/* WHATSAPP / AGENDAMENTO */
-.whatsapp-btn {
-  background: var(--whatsapp);
-  color: #fff;
-  padding: 14px;
-  border-radius: 14px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
-}
-
-.whatsapp-btn:hover {
-  transform: scale(1.03);
-  filter: brightness(1.05);
-}
-
-/* BOTÕES SECUNDÁRIOS */
-.secondary {
-  background: transparent;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  padding: 13px;
-  border-radius: 14px;
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-}
-
-.secondary:hover {
-  background: var(--gold);
-  color: #000;
-}
-
-/* Ajuste botões no tema claro */
-body.light .secondary {
-  color: #000;
-  border-color: #000;
-}
-
-body.light .secondary:hover {
-  background: #000;
-  color: #fff;
-}
-
-/* ================= REDES SOCIAIS ================= */
-.social-footer {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 22px;
-}
-
-.social-footer a {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  background: rgba(255,255,255,0.08);
+  color: #D4AF37;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: 0.3s;
+  z-index: 5;
 }
 
-.social-footer svg {
-  width: 22px;
-  height: 22px;
-  fill: var(--gold);
-  transition: all 0.3s ease;
+.share-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #D4AF37;
+  color: #000000;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 14px rgba(212,175,55,0.6);
+  transition: 0.3s;
+  z-index: 5;
 }
 
-.social-footer a:hover {
-  background: var(--gold);
-  transform: scale(1.1);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+.theme-toggle:hover, .share-btn:hover {
+  transform: scale(1.08);
 }
 
-.social-footer a:hover svg {
-  fill: #000;
+/* =========================
+   MODAL COMPARTILHAR
+========================= */
+.share-modal {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(8px);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border-radius: 22px;
+  z-index: 20;
 }
 
-/* ================= RODAPÉ ================= */
-.footer {
-  margin-top: 22px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
+.share-modal h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #D4AF37;
 }
 
-body.light .footer {
-  color: #444;
+.share-action {
+  width: 80%;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
   font-weight: 500;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #D4AF37;
+  transition: 0.3s;
 }
 
-/* ================= ANIMAÇÃO ================= */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.share-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(212,175,55,0.45);
 }
 
-/* ================= RESPONSIVO ================= */
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .services p {
-    font-size: 0.9rem;
-  }
+.close-share {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 6px;
 }
+
+/* =========================
+   QR CODE
+========================= */
+.qr-box {
+  text-align: center;
+  margin-top: 6px;
+}
+
+.qr-container {
+  position: relative;
+  display: inline-block;
+  width: 180px;
+  height: 180px;
+}
+
+.qr-container .qr {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  background: #FFFFFF;
+  padding: 6px;
+}
+
+.qr-container .qr-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  background: #D4AF37;
+  padding: 2px;
+  z-index: 2;
+}
+
+/* =========================
+   LOGO
+========================= */
+.logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000000;
+  box-shadow: 0 0 0 4px rgba(212,175,55,0.25),
+              0 0 30px rgba(212,175,55,0.55);
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   TEXTOS
+========================= */
+h1 { font-size: 35px; font-weight: 600; color: #D4AF37; }
+.subtitle { font-size: 14px; color: #FFFFFF; margin-bottom: 18px; }
+
+/* =========================
+   SERVICES
+========================= */
+.services { text-align: center; margin: 20px 0; }
+.services p { font-size: 14px; margin: 10px 0; display: flex; gap: 8px; align-items: center; justify-content: center; color: #FFFFFF; }
+.services span { color: #D4AF37; }
+
+/* =========================
+   BUTTONS
+========================= */
+.buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.buttons a { display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; padding: 14px; border-radius: 14px; font-size: 14px; font-weight: 500; transition: 0.3s; }
+.buttons a.btn-ebook,
+.buttons a.whatsapp-btn { background: #D4AF37; color: #000000; }
+.buttons a.secondary { background: transparent; border: 1px solid #D4AF37; color: #D4AF37; }
+.buttons a:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(212,175,55,0.35); }
+
+/* =========================
+   SOCIAL FOOTER
+========================= */
+.social-footer { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 10px; }
+.social-footer a { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; background: transparent; color: #D4AF37; transition: color 0.3s ease, transform 0.3s ease; }
+.social-footer a:hover { transform: translateY(-2px); color: #FFFFFF; }
+.social-footer svg { width: 25px; height: 25px; fill: currentColor; }
+
+/* =========================
+   COPYRIGHT
+========================= */
+.copyright { font-size: 13px; text-align: center; color: #FFFFFF; }
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+@keyframes fadeZoom { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =========================
+   MODO CLARO
+========================= */
+body.light {
+  background: #FFFFFF; /* fundo branco */
+  color: #000000;       /* texto preto */
+}
+
+body.light .card {
+  background: rgba(0,0,0,0.03);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+}
+
+body.light .subtitle { color: #000000; }
+body.light .services p { color: #000000; }
+body.light .services span { color: #D4AF37; }
+body.light .logo { background: #FFFFFF; box-shadow: 0 0 0 4px rgba(212,175,55,0.15), 0 10px 25px rgba(212,175,55,0.35); }
+body.light .buttons a.secondary { border-color: #D4AF37; color: #D4AF37; }
+body.light .buttons a.btn-ebook,
+body.light .buttons a.whatsapp-btn { background: #D4AF37; color: #000000; }
+body.light .social-footer a { color: #D4AF37; }
+body.light .social-footer a:hover { color: #000000; }
+body.light .copyright { color: #000000; }
