@@ -239,7 +239,7 @@ h1 { font-size: 35px; font-weight: 600; color: #D4AF37; }
 ========================= */
 body.light {
   background: #FFFFFF; /* fundo branco */
-  color: #000000;       /* texto preto */
+  color: #FFFFFF;       /* texto preto */
 }
 
 body.light .card {
