@@ -4,122 +4,159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Império da Barba | Cartão Digital Profissional </title>
+  <title>Império da Barba | Cartão Digital Premium</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Favicon-->
+  <!-- Favicon -->
   <link rel="shortcut icon" href="./assets/Imperio_da_barba-icon.png" type="image/x-icon">
 </head>
 
-<body class="dark">
+<body>
 
-  <div class="card">
+  <div class="card-container">
+    <div class="card">
 
-    <!-- BOTÃO DARK / LIGHT -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">🌙</button>
+      <!-- DECORAÇÃO DE FUNDO -->
+      <div class="card-bg-decoration">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+      </div>
 
-    <!-- BOTÃO COMPARTILHAR -->
-    <button class="share-btn" id="shareBtn" aria-label="Compartilhar cartão">🔗 Compartilhar</button>
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="share-btn" id="shareBtn" aria-label="Compartilhar cartão">
+          <i class="fas fa-share-alt"></i> Compartilhar
+        </button>
+      </div>
 
-    <!-- MODAL DE COMPARTILHAMENTO -->
-    <div class="share-modal" id="shareModal">
-      <h3>Compartilhar cartão</h3>
+      <!-- MODAL DE COMPARTILHAMENTO -->
+      <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+          <button class="close-share" id="closeShare"><i class="fas fa-times"></i></button>
+          
+          <h3><i class="fas fa-share-alt"></i> Compartilhar Cartão</h3>
+          <p class="share-subtitle">Compartilhe seu cartão digital profissional</p>
 
-      <button class="share-action" id="copyLinkBtn">📋 Copiar link</button>
-      <button class="share-action" id="shareLinkBtn">📲 Compartilhar</button>
+          <div class="share-actions">
+            <button class="share-action" id="copyLinkBtn">
+              <i class="fas fa-copy"></i> Copiar Link
+            </button>
+            <button class="share-action primary" id="shareLinkBtn">
+              <i class="fas fa-share"></i> Compartilhar
+            </button>
+          </div>
 
-      <div class="qr-box">
-        <div class="qr-container">
-          <img class="qr"
-            src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://imperio-da-barba.vercel.app"
-            alt="QR Code do Cartão Digital Império da Barba">
-          <img class="qr-center" src="./assets/Imperio_da_barba-icon.png" alt="Logo Império da Barba">
+          <div class="qr-box">
+            <div class="qr-container">
+              <img class="qr"
+                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://imperio-da-barba.vercel.app"
+                alt="QR Code do Cartão Digital Império da Barba">
+              <img class="qr-center" src="./assets/Imperio_da_barba-icon.png" alt="Logo Império da Barba">
+            </div>
+            <p><i class="fas fa-qrcode"></i> Escaneie o QR Code</p>
+          </div>
         </div>
-        <p>Escaneie o QR Code</p>
       </div>
 
-      <button class="close-share" id="closeShare">Fechar</button>
-    </div>
+      <!-- PERFIL -->
+      <div class="profile">
+        <div class="avatar-wrapper">
+          <div class="avatar-ring"></div>
+          <div class="avatar">
+            <img src="./assets/Imperio da barba-logo1.png" alt="Império da Barba">
+          </div>
+          <div class="status-dot"></div>
+        </div>
 
-    <!-- LOGO -->
-    <div class="logo">
-      <img src="./assets/Imperio da barba-logo1.png" alt="Império da Barba">
-    </div>
-
-    <!-- TÍTULOS -->
-    <h1>Império da Barba</h1>
-    <p class="subtitle">Muito além de cortar cabelo e barba</p>
-
-    <!-- SERVIÇOS -->
-    <div class="services">
-      <p><span>💈</span> Corte de cabelo e barba premium</p>
-      <p><span>🪒</span> Atendimento profissional com qualidade e estilo</p>
-      <p><span>🎯</span> Ambiente pensado para sua experiência</p>
-      <p>🕒 Atendimento de segunda a sábado <br>⏰ Das 08:30 às 20:00</p>
-    </div>
-
-    <!-- BOTÕES -->
-    <div class="buttons">
-      <a href="https://sites.appbarber.com.br/imperiodabarba-9isd" class="whatsapp-btn" target="_blank" aria-label="Agendar horário">
-        <span>📲 Agende seu atendimento</span>
-      </a>
-
-      <a href="https://play.google.com/store/apps/details?id=br.com.starapp.appbarbercli" class="secondary app-btn" target="_blank" aria-label="Baixar App da Barbearia">
-        <span>📥 Baixar App da Barbearia</span>
-      </a>
-
-      <a href="https://instagram.com/imperiodabarba.oficial" class="secondary" target="_blank" aria-label="Instagram">
-        <span>📸 Instagram</span>
-      </a>
-
-      <a href="https://maps.app.goo.gl/cZtEB3QAiUYFK7H7A" class="secondary" target="_blank" aria-label="Localização">
-        <span>📍 Localização</span>
-      </a>
-    </div>
-
-    <!-- RODAPÉ -->
-    <div class="footer">
-
-      <div class="social-footer">
-        <!-- WhatsApp 01 -->
-        <a href="https://wa.me/5583988643180?text=Olá!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.3c-.2.6-1.1 1.1-1.6 1.2-.5.1-1.2.2-3.9-.8-3.3-1.3-5.3-4.6-5.4-4.8-.1-.2-1.3-1.7-1.3-3.2 0-1.5.8-2.2 1.1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5.2.6.8 2.1.9 2.3.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.6.6-.2.2-.4.4-.2.8.2.4.9 1.5 2 2.4 1.4 1.2 2.6 1.6 3 1.8.4.2.6.2.9-.1.3-.3 1-.9 1.2-1.2.2-.3.5-.2.8-.1.3.1 2 .9 2.3 1 .3.1.5.2.6.3.1.1.1.6-.1 1.2z"/>
-          </svg>
-        </a>
-
-                <!-- WhatsApp 02 -->
-        <a href="https://wa.me/5583991653577?text=Olá!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.3c-.2.6-1.1 1.1-1.6 1.2-.5.1-1.2.2-3.9-.8-3.3-1.3-5.3-4.6-5.4-4.8-.1-.2-1.3-1.7-1.3-3.2 0-1.5.8-2.2 1.1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5.2.6.8 2.1.9 2.3.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.6.6-.2.2-.4.4-.2.8.2.4.9 1.5 2 2.4 1.4 1.2 2.6 1.6 3 1.8.4.2.6.2.9-.1.3-.3 1-.9 1.2-1.2.2-.3.5-.2.8-.1.3.1 2 .9 2.3 1 .3.1.5.2.6.3.1.1.1.6-.1 1.2z"/>
-          </svg>
-        </a>
-
-        <!-- Instagram -->
-        <a href="https://instagram.com/imperiodabarba.oficial" target="_blank" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zm0 7.4a2.9 2.9 0 1 1 0-5.8 2.9 2.9 0 0 1 0 5.8zM17.5 6.2a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"/>
-          </svg>
-        </a>
-
-        <!-- Localização -->
-        <a href="https://maps.app.goo.gl/cZtEB3QAiUYFK7H7A" target="_blank" aria-label="Localização">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
-          </svg>
-        </a>
+        <h1>Império da Barba</h1>
+        <p class="subtitle">Premium | Visagismo & Imagem</p>
+        <div class="badge">
+          <i class="fas fa-star"></i>
+          <span>Referência em Posicionamento</span>
+          <i class="fas fa-star"></i>
+        </div>
       </div>
 
-      <p class="copyright">
-        © 2026 Império da Barba | Todos os direitos reservados
-      </p>
-    </div>
+      <!-- UNIDADES -->
+      <div class="units">
+        <div class="unit-card">
+          <div class="unit-header">
+            <span class="unit-tag"><i class="fas fa-store"></i> Unidade 01</span>
+            <span class="unit-status"><i class="fas fa-circle"></i> Aberto</span>
+          </div>
+          <div class="unit-actions">
+            <a href="https://sites.appbarber.com.br/imperiodabarba-9isd" class="btn-primary" target="_blank">
+              <i class="fas fa-calendar-check"></i> Agendar
+            </a>
+            <a href="https://wa.me/5583988643180?text=Olá!%20Gostaria%20de%20agendar%20um%20atendimento." class="btn-whatsapp" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://maps.app.goo.gl/cZtEB3QAiUYFK7H7A" class="btn-location" target="_blank">
+              <i class="fas fa-map-pin"></i>
+            </a>
+          </div>
+        </div>
 
+        <div class="unit-divider"></div>
+
+        <div class="unit-card">
+          <div class="unit-header">
+            <span class="unit-tag"><i class="fas fa-store"></i> Unidade 02</span>
+            <span class="unit-status"><i class="fas fa-circle"></i> Aberto</span>
+          </div>
+          <div class="unit-actions">
+            <a href="https://sites.appbarber.com.br/imperiodabarbap-ae39" class="btn-primary" target="_blank">
+              <i class="fas fa-calendar-check"></i> Agendar
+            </a>
+            <a href="https://wa.me/5583991653577?text=Olá!%20Gostaria%20de%20agendar%20um%20atendimento." class="btn-whatsapp" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://share.google/BJNUiloNqug0gjksv" class="btn-location" target="_blank">
+              <i class="fas fa-map-pin"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP BUTTON -->
+      <a href="https://play.google.com/store/apps/details?id=br.com.starapp.appbarbercli" class="btn-app" target="_blank">
+        <i class="fas fa-download"></i> Baixar App da Barbearia
+      </a>
+
+      <!-- RODAPÉ -->
+      <div class="footer">
+        <div class="social-footer">
+          <a href="https://wa.me/5583988643180?text=Olá!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" aria-label="WhatsApp 01" class="social-link">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="https://wa.me/5583991653577?text=Olá!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" aria-label="WhatsApp 02" class="social-link">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="https://instagram.com/imperiodabarba.oficial" target="_blank" aria-label="Instagram" class="social-link">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://maps.app.goo.gl/cZtEB3QAiUYFK7H7A" target="_blank" aria-label="Localização" class="social-link">
+            <i class="fas fa-map-marker-alt"></i>
+          </a>
+        </div>
+
+        <p class="copyright">
+          &copy; 2026 Império da Barba | Todos os direitos reservados
+        </p>
+      </div>
+
+    </div>
   </div>
 
   <!-- JS -->

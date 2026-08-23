@@ -1,11 +1,11 @@
-/* ===============================
-   IMPÉRIO DA BARBA – SCRIPT OFICIAL
-   Dark/Light | Reveal | Share Modal
-================================ */
+/* ============================================
+   IMPÉRIO DA BARBA – SCRIPT PREMIUM
+   Dark/Light | Share Modal | Animações
+============================================ */
 
-/* ==================================================
+/* ============================================
    DARK / LIGHT MODE
-================================================== */
+============================================ */
 const themeToggle = document.getElementById("themeToggle");
 const savedTheme = localStorage.getItem("theme");
 
@@ -14,49 +14,36 @@ if (themeToggle) {
   if (savedTheme) {
     document.body.classList.remove("dark", "light");
     document.body.classList.add(savedTheme);
-    themeToggle.textContent = savedTheme === "dark" ? "🌙" : "☀️";
+    updateThemeIcon(savedTheme);
   } else {
     document.body.classList.add("dark");
-    themeToggle.textContent = "🌙";
+    updateThemeIcon("dark");
   }
 
   // Alterna tema
   themeToggle.addEventListener("click", () => {
     const isDark = document.body.classList.contains("dark");
+    const newTheme = isDark ? "light" : "dark";
 
-    document.body.classList.toggle("dark", !isDark);
-    document.body.classList.toggle("light", isDark);
-
-    const theme = isDark ? "light" : "dark";
-    localStorage.setItem("theme", theme);
-    themeToggle.textContent = theme === "dark" ? "🌙" : "☀️";
+    document.body.classList.remove("dark", "light");
+    document.body.classList.add(newTheme);
+    localStorage.setItem("theme", newTheme);
+    updateThemeIcon(newTheme);
   });
 }
 
-/* ==================================================
-   REVEAL ON SCROLL
-================================================== */
-const revealElements = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-  const windowHeight = window.innerHeight;
-  const revealPoint = 120;
-
-  revealElements.forEach(el => {
-    const elementTop = el.getBoundingClientRect().top;
-    if (elementTop < windowHeight - revealPoint) {
-      el.classList.add("active");
-    }
-  });
+function updateThemeIcon(theme) {
+  if (!themeToggle) return;
+  const icon = themeToggle.querySelector("i");
+  if (icon) {
+    icon.className = theme === "dark" ? "fas fa-moon" : "fas fa-sun";
+  }
 }
 
-window.addEventListener("load", revealOnScroll);
-window.addEventListener("scroll", revealOnScroll);
-
-/* ==================================================
-   COMPARTILHAMENTO – CARTÃO DIGITAL
-================================================== */
-const cardLink = "https://imperio-da-barba.vercel.app"; // Link do cartão Império da Barba
+/* ============================================
+   COMPARTILHAMENTO – MODAL PREMIUM
+============================================ */
+const cardLink = "https://imperio-da-barba.vercel.app";
 
 const shareBtn = document.getElementById("shareBtn");
 const shareModal = document.getElementById("shareModal");
@@ -64,112 +51,139 @@ const closeShare = document.getElementById("closeShare");
 const copyLinkBtn = document.getElementById("copyLinkBtn");
 const shareLinkBtn = document.getElementById("shareLinkBtn");
 
-// Abrir modal
+// Abrir modal com animação
 shareBtn?.addEventListener("click", () => {
-  shareModal.style.display = "flex";
+  shareModal.classList.add("show");
+  document.body.style.overflow = "hidden";
 });
 
 // Fechar modal
-closeShare?.addEventListener("click", () => {
-  shareModal.style.display = "none";
-});
+function closeShareModal() {
+  shareModal.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+closeShare?.addEventListener("click", closeShareModal);
 
 // Fechar clicando fora do modal
 shareModal?.addEventListener("click", (e) => {
   if (e.target === shareModal) {
-    shareModal.style.display = "none";
+    closeShareModal();
   }
 });
 
-// Copiar link
-copyLinkBtn?.addEventListener("click", () => {
+// Fechar com ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && shareModal?.classList.contains("show")) {
+    closeShareModal();
+  }
+});
+
+// Copiar link com feedback melhorado
+copyLinkBtn?.addEventListener("click", async () => {
   const message = `Confira meu cartão digital profissional: ${cardLink}`;
-  navigator.clipboard.writeText(message).then(() => {
-    alert("Link copiado com sucesso!");
-  });
+  try {
+    await navigator.clipboard.writeText(message);
+    const originalText = copyLinkBtn.innerHTML;
+    copyLinkBtn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+    copyLinkBtn.style.background = "#22C55E";
+    copyLinkBtn.style.color = "#fff";
+    setTimeout(() => {
+      copyLinkBtn.innerHTML = originalText;
+      copyLinkBtn.style.background = "";
+      copyLinkBtn.style.color = "";
+    }, 2000);
+  } catch {
+    alert("Copie o link manualmente: " + cardLink);
+  }
 });
 
 // Compartilhar link nativo
-shareLinkBtn?.addEventListener("click", () => {
-  if (navigator.share) {
-    navigator.share({
-      title: "Cartão Digital Profissional",
-      text: "Confira meu cartão digital profissional:",
-      url: cardLink
-    });
-  } else {
-    navigator.clipboard.writeText(cardLink);
-    alert("Link copiado!");
+shareLinkBtn?.addEventListener("click", async () => {
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: "Cartão Digital Profissional - Império da Barba",
+        text: "Confira meu cartão digital profissional:",
+        url: cardLink
+      });
+    } else {
+      await navigator.clipboard.writeText(cardLink);
+      const originalText = shareLinkBtn.innerHTML;
+      shareLinkBtn.innerHTML = '<i class="fas fa-check"></i> Link copiado!';
+      setTimeout(() => {
+        shareLinkBtn.innerHTML = originalText;
+      }, 2000);
+    }
+  } catch {
+    // Usuário cancelou ou erro
   }
 });
 
-/* ==================================================
-   PULSE BOTÃO EBOOK / AGENDAMENTO
-================================================== */
-const ebookBtn = document.querySelector("a.btn-ebook");
-if (ebookBtn) {
-  setInterval(() => {
-    ebookBtn.style.transform = "scale(1.06)";
+/* ============================================
+   ANIMAÇÃO DE ENTRADA
+============================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  const card = document.querySelector(".card");
+  if (card) {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(30px) scale(0.98)";
     setTimeout(() => {
-      ebookBtn.style.transform = "scale(1)";
-    }, 1000);
-  }, 2000);
+      card.style.transition = "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+      card.style.opacity = "1";
+      card.style.transform = "translateY(0) scale(1)";
+    }, 100);
+  }
+});
+
+/* ============================================
+   PULSE NO BOTÃO PRINCIPAL (APENAS PRIMEIRO)
+============================================ */
+const firstBtn = document.querySelector(".btn-primary");
+if (firstBtn) {
+  setInterval(() => {
+    firstBtn.style.transform = "scale(1.03)";
+    firstBtn.style.boxShadow = "0 8px 30px rgba(212, 175, 55, 0.4)";
+    setTimeout(() => {
+      firstBtn.style.transform = "scale(1)";
+      firstBtn.style.boxShadow = "";
+    }, 600);
+  }, 3000);
 }
 
-/* ==================================================
-   CARROSSEL (opcional para vídeos ou imagens)
-================================================== */
-document.querySelectorAll(".carousel").forEach(carousel => {
-  const track = carousel.querySelector(".carousel-track");
-  const slides = track?.querySelectorAll("img") || [];
-  const prevBtn = carousel.querySelector(".prev");
-  const nextBtn = carousel.querySelector(".next");
-
-  if (!track || slides.length === 0) return;
-
-  let index = 0;
-  let interval = null;
-  const delay = 5000;
-
-  function updateCarousel() {
-    track.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  function nextSlide() {
-    index = (index + 1) % slides.length;
-    updateCarousel();
-  }
-
-  function prevSlide() {
-    index = (index - 1 + slides.length) % slides.length;
-    updateCarousel();
-  }
-
-  function startAuto() {
-    stopAuto();
-    interval = setInterval(nextSlide, delay);
-  }
-
-  function stopAuto() {
-    if (interval) clearInterval(interval);
-  }
-
-  nextBtn?.addEventListener("click", () => {
-    stopAuto();
-    nextSlide();
-    startAuto();
+/* ============================================
+   TOOLTIP PARA BOTÕES DE WHATSAPP/LOCALIZAÇÃO
+============================================ */
+document.querySelectorAll(".btn-whatsapp, .btn-location").forEach(btn => {
+  const tooltipText = btn.classList.contains("btn-whatsapp") ? "WhatsApp" : "Localização";
+  btn.addEventListener("mouseenter", (e) => {
+    const tooltip = document.createElement("div");
+    tooltip.className = "tooltip-custom";
+    tooltip.textContent = tooltipText;
+    tooltip.style.cssText = `
+      position: fixed;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      pointer-events: none;
+      z-index: 999;
+      transform: translateY(-8px);
+      backdrop-filter: blur(4px);
+    `;
+    document.body.appendChild(tooltip);
+    const rect = btn.getBoundingClientRect();
+    tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px";
+    tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + "px";
+    btn._tooltip = tooltip;
   });
 
-  prevBtn?.addEventListener("click", () => {
-    stopAuto();
-    prevSlide();
-    startAuto();
+  btn.addEventListener("mouseleave", () => {
+    if (btn._tooltip) {
+      btn._tooltip.remove();
+      delete btn._tooltip;
+    }
   });
-
-  carousel.addEventListener("mouseenter", stopAuto);
-  carousel.addEventListener("mouseleave", startAuto);
-  carousel.addEventListener("touchstart", stopAuto);
-  carousel.addEventListener("touchend", startAuto);
-
-  startAuto();
 });
